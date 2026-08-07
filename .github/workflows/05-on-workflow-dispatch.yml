@@ -1,0 +1,30 @@
+name: 05-on-workflow-dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
+          - UAT
+          - Testing
+      version:
+        description: 'version to deploy'
+        required: false
+        default: 'latest'
+        type: string
+      dry_run:
+        description: 'only simulate, dont actually deploy'
+        required: false
+        default: true
+        type: boolean
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: testing on workflow dispatch with inputs
+        run: echo "This workflow runs on workflow_dispatch events with inputs"
