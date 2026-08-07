@@ -1,0 +1,15 @@
+name: 04-on-branch-paths
+on:
+  push:
+    branches:
+      - main
+      - 'release/**'
+    paths:
+      - 'src/**'
+      - '**.js'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: testing on push to specific branches and paths
+        run: echo "This workflow runs on push events to main or release branches and specific paths"
