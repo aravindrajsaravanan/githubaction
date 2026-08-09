@@ -1,24 +1,24 @@
-name: 05-on-workflow-dispatch
+name: 05-manual run with inputs
 on:
   workflow_dispatch:
     inputs:
       environment:
-        description: 'Target environment'
+        description: 'target environment'
         required: true
         default: 'staging'
         type: choice
         options:
+          - dev
           - staging
+          - testing
           - production
-          - UAT
-          - Testing
       version:
-        description: 'version to deploy'
-        required: false
+        description: 'version to deploy (eg:1.4.0)'
+        required: true
         default: 'latest'
         type: string
       dry_run:
-        description: 'only simulate, dont actually deploy'
+        description: 'only simulate, do not actually deploy'
         required: false
         default: true
         type: boolean
@@ -26,5 +26,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: testing on workflow dispatch with inputs
-        run: echo "This workflow runs on workflow_dispatch events with inputs"
+      - name: shows the inputs the user selected
+        run: |
+          echo "environment ${{inputs.environment}}"
+          echo "version ${{inputs.version}}"
+          echo "dry run: ${{inputs.dry-dry_run}}"
+        
+      
+          
