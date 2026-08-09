@@ -1,0 +1,15 @@
+name: 03-on-pull-request
+on:
+  pull_request:
+    types: [opened, synchronizer, reopened] #this are the defaults
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: describe the pull request
+        run: |
+          echo "Event: $GITHUB_EVENTNAME"
+          echo "PR base: ${{github.base_ref}}"
+          echo "PR head: ${{github.head_ref}}"
+          echo "PR number: ${{github.event.pull_request.number}}"
+        
