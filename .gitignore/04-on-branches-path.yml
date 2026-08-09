@@ -1,7 +1,7 @@
 # Rule: use either branches or branches-ignore (not both)
 #       same for paths/paths-ignore & tags/tags-ignore
 
-name: 04-on-branches-path
+name: 04-on-branches-path(filtered)
 on:
   push:
     branches:
