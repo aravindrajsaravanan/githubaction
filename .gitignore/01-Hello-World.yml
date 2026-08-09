@@ -1,0 +1,16 @@
+# first code
+name: 01-hello-world
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: printing gettings
+        run: 
+          echo "hello-world"
+      - name: printing multiple lines
+        run: | 
+          echo "today's runner is: $RUNNER_OS"
+          echo "the repository is: $GITHUB_REPOSITORY"
+          
+    
