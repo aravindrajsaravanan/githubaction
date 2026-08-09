@@ -30,7 +30,7 @@ jobs:
         run: |
           echo "environment ${{inputs.environment}}"
           echo "version ${{inputs.version}}"
-          echo "dry run: ${{inputs.dry-dry_run}}"
+          echo "dry run: ${{inputs.dry_run}}"
         
       
           
