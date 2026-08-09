@@ -1,0 +1,25 @@
+# Rule: use either branches or branches-ignore (not both)
+#       same for paths/paths-ignore & tags/tags-ignore
+
+name: 04-on-branches-path
+on:
+  push:
+    branches:
+      - main
+      - 'release/**'
+    branches-ignore: # using this line we can negligate the branches listed below
+      - main
+      - 'release/**'
+    paths:
+      - 'src/**'
+      - '**.js'
+    paths-ignore: # using this command we can negligate the below mentioned paths
+      - 'src/**'
+      - '**/.js' 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: this only runs for the branches/paths above
+        run: 
+          echo "releavent chnages deteched on branch ${{github.ref_name}}"
