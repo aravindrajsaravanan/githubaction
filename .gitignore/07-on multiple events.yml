@@ -1,0 +1,18 @@
+name: 07-on multiple events
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: report which event started this run
+        run:
+          echo "this run was triggered by $GITHUB_EVENT_NAME event"
+      - name: extra step only on pushes to main
+        if: github.event_name=='push'
+        run:
+          echo "a push to main happened - could kick off a deployemnt here"
