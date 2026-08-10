@@ -1,0 +1,24 @@
+name: 10-setup node
+on: workflow_dispatch
+jobs:
+  node-versions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: prebuild tools
+        run: 
+          docker --version
+          
+      - name: checkout code
+        uses: actions/checkout@v5
+        
+      - name: install node.js 20
+        uses: actions/setup-Node@v6
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: sample-app/package-lock.json
+          
+      - name: confirm the version
+        run: |
+          node --version
+          npm --version
