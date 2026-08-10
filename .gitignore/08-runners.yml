@@ -1,0 +1,17 @@
+name: 08-runners
+on:
+  workflow_dispatch
+jobs:
+  linux-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: inspect the linux runner
+        run: |
+          echo "OS $RUNNER_OS"
+          echo "arch $RUNNER_ARCH"
+  windows-job:
+    runs-on: windows-latest
+    steps:
+      - name: inspect the windows runner
+        run:
+          write-host "OS is $env:RUNNER_OS"
