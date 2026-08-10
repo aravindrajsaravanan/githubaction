@@ -1,8 +1,8 @@
 name: 06-scheduled run
 on:
-  workflow_dispatch:   # allows manual trigger for testing
+  workflow_dispatch:
   schedule:
-    - cron: '7 * * * *'   # runs daily at 07:30 UTC (1:00 PM IST)
+    - cron: '7 * * * *'  
 jobs:
   build:
     runs-on: ubuntu-latest
