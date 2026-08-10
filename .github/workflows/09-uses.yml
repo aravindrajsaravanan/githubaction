@@ -1,0 +1,39 @@
+name: 09-uses
+on: workflow_dispatch
+jobs:
+  intro:
+    runs-on: ubuntu-latest
+    steps:
+      - name: intro
+        uses: action/checkout@v5
+      - name: run a shell command
+        run: echo "file in repo:" && ls -la      
+  depth-0:
+    runs-on: ubuntu-latest
+    steps:
+      - name: depth-0
+        uses: action/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: show commit count
+        run: echo "commit count:"&& git log --oneline | wc- l
+        
+  depth-1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: depth-0
+        uses: action/checkout@v5
+        with:
+          fetch-depth: 1
+      - name: show commit count
+        run: echo "commit count:"&& git log --oneline | wc- l 
+        
+  depth-2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: depth-0
+        uses: action/checkout@v5
+        with:
+          fetch-depth: 2
+      - name: show commit count
+        run: echo "commit count:"&& git log --oneline | wc- l          
