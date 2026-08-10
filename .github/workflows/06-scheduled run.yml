@@ -1,7 +1,7 @@
 name: 06-scheduled run
 on:
   schedule:
-    - cron: '20 7 * * *'
+    - cron: '25 7 * * *'
 jobs:
   build:
     runs-on: ubuntu-latest
