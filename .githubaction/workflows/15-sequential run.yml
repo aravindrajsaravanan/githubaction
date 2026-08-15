@@ -1,0 +1,27 @@
+name: 15-sequential run
+on: workflows_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "building job"
+  test:
+    needs: build  
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "testing job"
+  lint:
+    needs: build  
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "linting job" 
+
+  deploy:
+    needs: [test, lint]
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "deploying job"          
