@@ -4,6 +4,6 @@ jobs:
   test_job:
     runs-on: ubuntu-latest
     steps:
-      - name: test
+      - name: test step
         run: echo 'test line'  
         
