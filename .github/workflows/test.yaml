@@ -1,14 +1,12 @@
-# first code
-name: 01-hello-world
-on: workflow_dispatch
+name: 02-on-push
+on: push
 jobs:
-  say-hello:
+  build:
     runs-on: ubuntu-latest
     steps:
-    - name: print a greeting
-      run: echo "Hello, Aravind!"
-      
-    - name: printing multiple lines
+    - name: show what triggered this run
       run: |
-        echo "today's runner is: $RUNNER_OS"
-        echo "the repository is: $GITHUB_REPOSITORY"
+        echo "Event name: $GITHUB_EVENT_NAME"
+        echo "Branch ref: $GITHUB_REF"
+        echo "Commit SHA: $GITHUB_SHA"
+        echo "Pushed by: $GITHUB_ACTOR"
