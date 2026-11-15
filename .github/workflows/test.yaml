@@ -1,18 +1,18 @@
-name: 07-on multiple events
+name: 08-runners
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-  workflow_dispatch:
-jobs:
-  build:
+  workflow_dispatch
+jobs: # it's a parallel job, so both jobs will run at the same time
+  linux-job:
     runs-on: ubuntu-latest
     steps:
-      - name: report which event started this run
-        run:
-          echo "this run was triggered by $GITHUB_EVENT_NAME event"
-      - name: extra step only on pushes to main
-        if: github.event_name=='push'
-        run:
-          echo "a push to main happened - could kick off a deployment here"
+    - name: inspect the linux runner
+      run: |
+        echo "OS $RUNNER_OS"
+        echo "arch $RUNNER_ARCH"
+
+  windows-job:
+    runs-on: windows-latest
+    steps:
+    - name: inspect the windows runner
+      run:
+        write-host "OS is $env:RUNNER_OS"
