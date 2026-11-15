@@ -31,6 +31,3 @@ jobs:
           echo "environment ${{inputs.environment}}"
           echo "version ${{inputs.version}}"
           echo "dry run: ${{inputs.dry_run}}"
-        
-      
-          
