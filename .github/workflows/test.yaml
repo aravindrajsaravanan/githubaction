@@ -1,9 +1,14 @@
-name: test_yaml
+# first code
+name: 01-hello-world
 on: workflow_dispatch
 jobs:
-  test_job:
+  say-hello:
     runs-on: ubuntu-latest
     steps:
-      - name: test step
-        run: echo 'test line'  
-        
+    - name: print a greeting
+      run: echo "Hello, Aravind!"
+      
+    - name: printing multiple lines
+      run: |
+        echo "today's runner is: $RUNNER_OS"
+        echo "the repository is: $GITHUB_REPOSITORY"
