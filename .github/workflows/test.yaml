@@ -11,7 +11,7 @@ jobs:
           if [ -z "$api_key" ]; then
             echo "API Key is not set"
           fi
-            echo "API Key is set, github masks the secret value in the logs"
+            echo "API Key is set, github masks the secret value $api_key in the logs"
       - name: show variables
         env:
           linkedin_id: ${{ vars.LINKEDIN }}
@@ -19,4 +19,4 @@ jobs:
           if [ -z "$linkedin_id" ]; then
             echo "LinkedIn ID is not set"
           fi
-            echo "LinkedIn ID is set, github prints the variable value in the logs"
+            echo "LinkedIn ID is set, github prints the variable value $linkedin_id in the logs"
