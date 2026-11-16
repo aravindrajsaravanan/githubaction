@@ -22,4 +22,4 @@ jobs:
     - name: print the env variable
       env:
         description: "is a devops engineer"
-      run: echo "Hello ${name} and $description"
+      run: echo "Hello ${name} $description"
