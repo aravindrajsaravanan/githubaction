@@ -1,32 +1,22 @@
-name: 13 - Contexts
+name: 14 - Secrets & Variables
 on: workflow_dispatch
 jobs:
-  explore-contexts:
+  explore-secrets-variables:
     runs-on: ubuntu-latest
     steps:
-      - name: Common github context values
-        run: |
-          echo "Repository : ${{ github.repository }}"
-          echo "Actor      : ${{ github.actor }}"
-          echo "Event      : ${{ github.event_name }}"
-          echo "Ref name   : ${{ github.ref_name }}"
-          echo "SHA        : ${{ github.sha }}"
-          echo "Run number : ${{ github.run_number }}"  # increments each run
-          echo "Workspace  : ${{ github.workspace }}"
-          echo "Attempts   : ${{ github.run_attempt }}"
-
-      - name: Runner context
-        run: |
-          echo "Runner OS  : ${{ runner.os }}"
-          echo "Runner arch: ${{ runner.arch }}"
-
-      # Dump the ENTIRE GitHub context as JSON - great for debugging/learning
-      - name: Dump full github context
+      - name: Show secrets
         env:
-          GITHUB_DATA: ${{ toJSON(github) }}
-        run: echo "$GITHUB_DATA"
-
-      - name: Dump full runner context
+          api_key: ${{ secrets.DUMMY_API_KEY }}
+        run: |
+          if [ -z "$api_key" ]; then
+            echo "API Key is not set"
+          fi
+            echo "API Key is set, github masks the secret value in the logs"
+      - name: show variables
         env:
-          RUNNER_DATA: ${{ toJSON(runner) }}
-        run: echo "$RUNNER_DATA"
+          linkedin_id: ${{ vars.LINKEDIN }}
+        run: |
+          if [ -z "$linkedin_id" ]; then
+            echo "LinkedIn ID is not set"
+          fi
+            echo "LinkedIn ID is set, github prints the variable value in the logs"
