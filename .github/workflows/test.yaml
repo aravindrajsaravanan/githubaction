@@ -1,18 +1,11 @@
-name: 08-runners
+name: 09-env-workflow-level
 on:
   workflow_dispatch
-jobs: # it's a parallel job, so both jobs will run at the same time
-  linux-job:
+env:
+  name: "Aravind"
+jobs:
+  job-level:
     runs-on: ubuntu-latest
     steps:
-    - name: inspect the linux runner
-      run: |
-        echo "OS $RUNNER_OS"
-        echo "arch $RUNNER_ARCH"
-
-  windows-job:
-    runs-on: windows-latest
-    steps:
-    - name: inspect the windows runner
-      run:
-        write-host "OS is $env:RUNNER_OS"
+    - name: print the env variable
+      run: echo "Hello $name"
