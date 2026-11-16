@@ -1,22 +1,33 @@
-name: 14 - Secrets & Variables
+name: 15 - Needs dependencies
 on: workflow_dispatch
 jobs:
-  explore-secrets-variables:
+  build_job:
     runs-on: ubuntu-latest
     steps:
-      - name: Show secrets
-        env:
-          api_key: ${{ secrets.DUMMY_API_KEY }}
-        run: |
-          if [ -z "$api_key" ]; then
-            echo "API Key is not set"
-          fi
-            echo "API Key is set, github masks the secret value $api_key in the logs"
-      - name: show variables
-        env:
-          linkedin_id: ${{ vars.LINKEDIN }}
-        run: |
-          if [ -z "$linkedin_id" ]; then
-            echo "LinkedIn ID is not set"
-          fi
-            echo "LinkedIn ID is set, github prints the variable value $linkedin_id in the logs"
+    - name: Build step
+      run: |
+        echo "Building the project..."
+        sleep 5
+  test_job:
+    runs-on: ubuntu-latest
+    needs: build_job
+    steps:
+    - name: Test step
+      run: |
+        echo "Running tests..."
+        sleep 10
+  lint_job:
+    runs-on: ubuntu-latest
+    needs: build_job
+    steps:
+    - name: Lint step
+      run: |
+        echo "Linting the code..."
+        sleep 3
+  deploy_job:
+    runs-on: ubuntu-latest
+    needs: [test_job, lint_job]
+    steps:
+    - name: Deploy step
+      run: |
+        echo "Deploying the application..."
