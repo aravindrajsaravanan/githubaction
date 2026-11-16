@@ -1,4 +1,4 @@
-name: 09-env-workflow-level
+name: 10-env-job-level
 on:
   workflow_dispatch
 env:
@@ -6,6 +6,8 @@ env:
 jobs:
   job-level:
     runs-on: ubuntu-latest
+    env:
+      name: "raj"
     steps:
     - name: print the env variable
       run: echo "Hello $name"
